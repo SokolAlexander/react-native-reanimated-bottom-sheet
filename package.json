@@ -9,6 +9,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "lint": "eslint --ext .js,.ts,.tsx .",
+    "lintfix": "eslint --fix --ext .js,.ts,.tsx .",
     "typescript": "tsc --noEmit",
     "release": "release-it",
     "prepare": "bob build"

@@ -134,6 +134,11 @@ type Props = {
   callbackThreshold?: number
   borderRadius?: number
   topSheet: boolean
+  CommonBg: ({
+    children,
+  }: {
+    children: React.ReactElement[]
+  }) => React.ReactElement
   renderExtraHandle: () => React.ReactNode
   animateHeight: boolean
   minHeight: number
@@ -790,7 +795,7 @@ export default class BottomSheetBehavior extends React.Component<Props, State> {
       snapPoints = state.snapPoints
     } else {
       snapPoints = sortedPropsSnapPoints.map(
-        (p) => new Value(sortedPropsSnapPoints[0].val - p.val)
+        p => new Value(sortedPropsSnapPoints[0].val - p.val)
       )
     }
 
@@ -824,7 +829,6 @@ export default class BottomSheetBehavior extends React.Component<Props, State> {
 
   render() {
     const { borderRadius, CommonBg } = this.props
-    console.log(this.height, this.translateMaster)
 
     return (
       <>
@@ -853,9 +857,10 @@ export default class BottomSheetBehavior extends React.Component<Props, State> {
               //   },
               // ],
             },
-            this.props.topSheet && {
-              top: '-150%',
-            },
+            this.props.topSheet &&
+              ({
+                top: '-150%',
+              } as any),
             this.props.animateHeight
               ? {
                   top: '0%',
@@ -934,9 +939,10 @@ export default class BottomSheetBehavior extends React.Component<Props, State> {
                         width: '100%',
                         // transform: [{ translateY: this.translateMaster as any }],
                       },
-                      !this.props.animateHeight && {
-                        transform: [{ translateY: this.Y as any }],
-                      },
+                      !this.props.animateHeight &&
+                        ({
+                          transform: [{ translateY: this.Y as any }],
+                        } as any),
                     ]}
                     onLayout={this.handleLayoutContent}
                   >
@@ -968,13 +974,14 @@ export default class BottomSheetBehavior extends React.Component<Props, State> {
                               {
                                 zIndex: 101,
                               },
-                              this.props.animateHeight && {
-                                transform: [
-                                  {
-                                    translateY: this.Y as any,
-                                  },
-                                ],
-                              },
+                              this.props.animateHeight &&
+                                ({
+                                  transform: [
+                                    {
+                                      translateY: this.Y as any,
+                                    },
+                                  ],
+                                } as any),
                             ]}
                             onLayout={this.handleLayoutHeader}
                           >
