@@ -133,16 +133,16 @@ type Props = {
   onCloseEnd?: () => void
   callbackThreshold?: number
   borderRadius?: number
-  topSheet: boolean
+  topSheet?: boolean
   CommonBg: ({
     children,
   }: {
     children: React.ReactElement[]
   }) => React.ReactElement
   renderExtraHandle: () => React.ReactNode
-  animateHeight: boolean
+  animateHeight?: boolean
   minHeight: number
-  shadow: StyleSheet.NamedStyles<ViewStyle>
+  shadow?: StyleSheet.NamedStyles<ViewStyle>
 }
 
 type State = {
@@ -347,6 +347,7 @@ export default class BottomSheetBehavior extends React.Component<Props, State> {
     animateHeight: false,
     minHeight: 150,
     shadow: {},
+    renderExtraHandle: false,
   }
 
   private decayClock = new Clock()
